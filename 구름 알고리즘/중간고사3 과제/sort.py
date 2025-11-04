@@ -1,4 +1,7 @@
 import random, timeit        
+import sys
+sys.setrecursionlimit(1000000)
+
 class Heap: 
     def __init__(self, L=[]): 
         self.A = L
@@ -96,37 +99,9 @@ def merge_sort(A, first, last): # merge sort A[first] ~ A[last]
         A[k] = B[k-first]
         Ms += 1
 
-
-    def __init__(self, L=[]): 
-        self.A = L  
-        self.make_heap() 
-
-    def __str__(self):
-        return str(self.A)
-
-    def __len__(self):
-        return len(self.A)
-	
-    def heapify_down(self, k, n):
-        while 2*k+1 < n: 
-            L, R = 2*k + 1, 2*k + 2	 
-            if L < n and self.A[L] > self.A[k]: 
-                m = L
-            else:
-                m = k
-            if R < n and self.A[R] > self.A[m]: 
-                m = R 
-            if m != k:	
-                self.A[k], self.A[m] = self.A[m], self.A[k]
-                k = m
-            else: break	
-
-    def make_heap(self):
-        n = len(self.A)
-        for k in range(n-1, -1, -1): 
-            self.heapify_down(k, n)
-
-
+def tim_sort(A):
+    A.sort()
+    return
 
 # 아래 코드는 바꾸지 말 것!
 # 직접 실행해보면, 어떤 값이 출력되는지 알 수 있음
@@ -155,6 +130,8 @@ for i in range(n):
     A.append(random.randint(-1000,1000))
 B = A[:]
 C = A[:]
+D = A[:]
+
 print("")
 print("Quick sort:")
 print("time =", timeit.timeit("quick_sort(A, 0, n-1)", globals=globals(), number=1))
@@ -169,9 +146,13 @@ print("Heap sort:")
 print("time =", timeit.timeit("heap_sort(C)", globals=globals(), number=1))
 print("  comparisons = {:10d}, swaps = {:10d}\n".format(Hc, Hs))
 
-
+print("Tim sort:")
+print("time =", timeit.timeit("tim_sort(D)", globals=globals(), number=1))
 
 # 진짜 정렬되었는지 check한다. 정렬이 되지 않았다면, assert 함수가 fail됨!
 assert(check_sorted(A))
 assert(check_sorted(B))
 assert(check_sorted(C))
+assert(check_sorted(D))
+
+
