@@ -1,6 +1,11 @@
-def paliindrome(x):
-    reverseX = ''.join(reversed(x))
-    return LCS(x, reverseX)
+# 
+# 팰린드롬 = 가장 긴 앞과 뒤과 같은 단어
+# -> 팰린드롬을 찾으려면 입력받은 문자열을 거꾸로 뒤집고 LCS한 것과 같다
+# 시간복잡도 O(n^2) 
+#
+def paliindrome(x): # 문자열을 거꾸로 뒤집고 LCS 수행
+    reverseX = ''.join(reversed(x)) # O(n)
+    return LCS(x, reverseX) # O(n^2)
 
 def LCS(x, y):
     n = len(x)
