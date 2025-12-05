@@ -10,7 +10,7 @@ def chk(capacity):
         if(move_left > capacity):
             return False
 
-        move_right = min(capacity - move_left, cur)
+        move_right = min(capacity - move_left*2, cur)
         
     if(dist[n-2] - move_right > capacity): # 마지막 로봇
         return False
